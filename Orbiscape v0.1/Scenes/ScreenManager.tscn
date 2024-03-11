@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://casaxj7kdvfvj"]
+
+[ext_resource type="Script" path="res://Scripts/ScreenManager.cs" id="1_enkpx"]
+
+[node name="ScreenManager" type="Node"]
+script = ExtResource("1_enkpx")

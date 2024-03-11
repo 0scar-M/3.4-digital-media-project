@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddy0iqvgsb3xx"]
+
+[ext_resource type="Script" path="res://Scripts/LevelSelectScreen.cs" id="1_bk8hk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7qfyk"]
+load_path = "res://.godot/imported/Back.png-ab43093e8800bf19aba4c8bb896c8e31.ctex"
+
+[node name="LevelSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bk8hk")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "  1  "
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="BackButton" type="Button" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 15
+icon = SubResource("CompressedTexture2D_7qfyk")
+
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="OnBackButtonPressed"]
