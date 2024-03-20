@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://drulin43busmj"]
+
+[sub_resource type="Theme" id="Theme_e4x3l"]
+Button/font_sizes/font_size = 32
+Label/font_sizes/font_size = 32
+LineEdit/font_sizes/font_size = 32
+ProgressBar/font_sizes/font_size = 32
+TabBar/font_sizes/font_size = 32
+TextEdit/font_sizes/font_size = 32
+Tree/font_sizes/font_size = 32
+Tree/font_sizes/title_button_font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inga1"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spxti"]
+bg_color = Color(0.207843, 0.207843, 0.207843, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4um8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_012kt"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sd1o"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[node name="Button" type="Button"]
+theme = SubResource("Theme_e4x3l")
+theme_override_colors/font_disabled_color = Color(0.439216, 0.439216, 0.439216, 1)
+theme_override_constants/h_separation = 16
+theme_override_constants/icon_max_width = 20
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_inga1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_spxti")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e4um8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_012kt")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5sd1o")
