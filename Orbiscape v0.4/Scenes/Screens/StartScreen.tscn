@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2gkehd3s3wa"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/StartScreen.cs" id="2_omkk0"]
+[ext_resource type="PackedScene" uid="uid://drulin43busmj" path="res://Scenes/Buttons/MyButton.tscn" id="3_bwsre"]
+[ext_resource type="Texture2D" uid="uid://cxm0ijaiqpd0t" path="res://Assests/Icons/play.svg" id="3_rxisy"]
+[ext_resource type="Texture2D" uid="uid://dmr5aecxbkmt0" path="res://Assests/Icons/exit.svg" id="4_t747p"]
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_omkk0")
+
+[node name="MenuCenter" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuVBox" type="VBoxContainer" parent="MenuCenter"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="TitleMargin" type="MarginContainer" parent="MenuCenter/MenuVBox"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="Title" type="Label" parent="MenuCenter/MenuVBox/TitleMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 200
+text = "Orbiscape"
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MenuCenter/MenuVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="StartButton" parent="MenuCenter/MenuVBox/ButtonsVBox" instance=ExtResource("3_bwsre")]
+layout_mode = 2
+text = "Start"
+icon = ExtResource("3_rxisy")
+
+[node name="QuitButtonMargin" type="MarginContainer" parent="MenuCenter/MenuVBox/ButtonsVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="QuitButton" parent="MenuCenter/MenuVBox/ButtonsVBox/QuitButtonMargin" instance=ExtResource("3_bwsre")]
+layout_mode = 2
+theme = null
+text = "Quit"
+icon = ExtResource("4_t747p")
+
+[connection signal="pressed" from="MenuCenter/MenuVBox/ButtonsVBox/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="MenuCenter/MenuVBox/ButtonsVBox/QuitButtonMargin/QuitButton" to="." method="OnQuitButtonPressed"]
