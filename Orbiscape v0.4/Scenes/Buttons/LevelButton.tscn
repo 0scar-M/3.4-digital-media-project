@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctxrpm3il76xf"]
+
+[ext_resource type="Script" path="res://Scripts/LevelButton.cs" id="2_jq2jf"]
+[ext_resource type="PackedScene" uid="uid://drulin43busmj" path="res://Scenes/Buttons/MyButton.tscn" id="3_j46pe"]
+
+[sub_resource type="Theme" id="Theme_e4x3l"]
+Button/font_sizes/font_size = 32
+Label/font_sizes/font_size = 32
+LineEdit/font_sizes/font_size = 32
+ProgressBar/font_sizes/font_size = 32
+TabBar/font_sizes/font_size = 32
+TextEdit/font_sizes/font_size = 32
+Tree/font_sizes/font_size = 32
+Tree/font_sizes/title_button_font_size = 32
+
+[node name="LevelButton" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_e4x3l")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+script = ExtResource("2_jq2jf")
+
+[node name="Button" parent="." instance=ExtResource("3_j46pe")]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="OnLevelButtonPressed"]
