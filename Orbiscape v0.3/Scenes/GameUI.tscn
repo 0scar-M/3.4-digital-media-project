@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://clnsb47r40xfe"]
+
+[ext_resource type="PackedScene" uid="uid://drulin43busmj" path="res://Scenes/Buttons/MyButton.tscn" id="1_odp12"]
+[ext_resource type="Texture2D" uid="uid://dvfp7lxeu0vfq" path="res://Assests/Icons/pause.svg" id="2_jcjua"]
+[ext_resource type="Texture2D" uid="uid://tupsie3hb4y8" path="res://Assests/Icons/restart.svg" id="3_50t83"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu.cs" id="4_o1sb6"]
+[ext_resource type="Texture2D" uid="uid://dmr5aecxbkmt0" path="res://Assests/Icons/exit.svg" id="5_r7j8d"]
+[ext_resource type="Texture2D" uid="uid://cxm0ijaiqpd0t" path="res://Assests/Icons/play.svg" id="6_k6ebh"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.052
+anchor_bottom = 0.089
+offset_right = 0.159996
+offset_bottom = -0.120003
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 32
+
+[node name="PauseButton" parent="PauseMargin" instance=ExtResource("1_odp12")]
+layout_mode = 2
+icon = ExtResource("2_jcjua")
+
+[node name="RestartMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.948
+anchor_right = 1.0
+anchor_bottom = 0.089
+offset_left = -0.160156
+offset_bottom = -0.120003
+grow_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 32
+
+[node name="RestartButton" parent="RestartMargin" instance=ExtResource("1_odp12")]
+layout_mode = 2
+icon = ExtResource("3_50t83")
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_o1sb6")
+
+[node name="MenuCenter" type="CenterContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuVBox" type="VBoxContainer" parent="PauseMenu/MenuCenter"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="PauseMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="PauseMenu/MenuCenter/MenuVBox/LabelMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 200
+text = "Paused"
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="PauseMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ExitButton" parent="PauseMenu/MenuCenter/MenuVBox/ButtonsVBox" instance=ExtResource("1_odp12")]
+layout_mode = 2
+text = "Exit"
+icon = ExtResource("5_r7j8d")
+
+[node name="UnpauseMargin" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.052
+anchor_bottom = 0.089
+offset_right = 0.159996
+offset_bottom = -0.120003
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 32
+
+[node name="UnpauseButton" parent="PauseMenu/UnpauseMargin" instance=ExtResource("1_odp12")]
+layout_mode = 2
+icon = ExtResource("6_k6ebh")
+
+[connection signal="pressed" from="PauseMargin/PauseButton" to="PauseMenu" method="OnPauseButtonPressed"]
+[connection signal="pressed" from="PauseMenu/UnpauseMargin/UnpauseButton" to="PauseMenu" method="OnUnpauseButtonPressed"]
