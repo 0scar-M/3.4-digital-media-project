@@ -1,0 +1,496 @@
+[gd_scene load_steps=16 format=3 uid="uid://bogkargjhkx4b"]
+
+[ext_resource type="Script" path="res://Scripts/GameUI.cs" id="1_6ejlh"]
+[ext_resource type="PackedScene" uid="uid://drulin43busmj" path="res://Scenes/MyButton.tscn" id="1_lq02l"]
+[ext_resource type="Texture2D" uid="uid://dvfp7lxeu0vfq" path="res://Assests/Icons/pause.svg" id="2_g1qn1"]
+[ext_resource type="Script" path="res://Scripts/Controls.cs" id="2_tuy4t"]
+[ext_resource type="Texture2D" uid="uid://tupsie3hb4y8" path="res://Assests/Icons/restart.svg" id="4_iglkd"]
+[ext_resource type="Texture2D" uid="uid://hvbrgmbc5akh" path="res://Assests/Icons/reverse-play.svg" id="5_ju4ld"]
+[ext_resource type="Texture2D" uid="uid://dmr5aecxbkmt0" path="res://Assests/Icons/exit.svg" id="6_m22aq"]
+[ext_resource type="Script" path="res://Scripts/Menus/MenuManager.cs" id="6_pjw6r"]
+[ext_resource type="Texture2D" uid="uid://cxm0ijaiqpd0t" path="res://Assests/Icons/play.svg" id="7_f87ls"]
+[ext_resource type="Script" path="res://Scripts/Menus/PauseMenu.cs" id="7_ordee"]
+[ext_resource type="Script" path="res://Scripts/Menus/CompleteMenu.cs" id="10_agkur"]
+[ext_resource type="Script" path="res://Scripts/Menus/FailMenu.cs" id="11_yrji5"]
+[ext_resource type="Script" path="res://Scripts/Menus/NullMenu.cs" id="12_q7hx7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2nuy"]
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10uf4"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.435294, 0.435294, 0.435294, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[node name="GameUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ejlh")
+
+[node name="Controls" type="Control" parent="."]
+process_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_tuy4t")
+
+[node name="PauseMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.052
+anchor_bottom = 0.089
+offset_right = 0.159996
+offset_bottom = -0.120003
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 32
+
+[node name="PauseButton" parent="Controls/PauseMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+icon = ExtResource("2_g1qn1")
+icon_alignment = 1
+
+[node name="RestartMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.948
+anchor_right = 1.0
+anchor_bottom = 0.089
+offset_left = -0.160156
+offset_bottom = -0.120003
+grow_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 32
+
+[node name="RestartButton" parent="Controls/RestartMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+icon = ExtResource("4_iglkd")
+icon_alignment = 1
+
+[node name="ThrustLabelMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -666.0
+offset_right = 143.0
+grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 624
+
+[node name="ThrustLabel" type="Label" parent="Controls/ThrustLabelMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0%"
+horizontal_alignment = 2
+max_lines_visible = 1
+
+[node name="ThrustMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -654.667
+offset_right = 146.0
+grow_vertical = 0
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 99
+
+[node name="Thrust" type="Control" parent="Controls/ThrustMargin"]
+layout_mode = 2
+
+[node name="MiddleLine" type="Panel" parent="Controls/ThrustMargin/Thrust"]
+layout_mode = 2
+offset_left = 22.5
+offset_right = 27.5
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_m2nuy")
+
+[node name="Border" type="Panel" parent="Controls/ThrustMargin/Thrust"]
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_10uf4")
+
+[node name="ThrustScrollBar" type="VScrollBar" parent="Controls/ThrustMargin/Thrust"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 500.0
+rotation = 3.14159
+pivot_offset = Vector2(25, 250)
+mouse_filter = 2
+max_value = 1.0
+
+[node name="RotationMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -101.0
+offset_right = 235.0
+grow_vertical = 0
+theme_override_constants/margin_left = 178
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls/RotationMargin"]
+layout_mode = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="Controls/RotationMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="Controls/RotationMargin/VBoxContainer/LabelMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Heading: 0°"
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="Controls/RotationMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="RotateLeftMargin" type="MarginContainer" parent="Controls/RotationMargin/VBoxContainer/ButtonsHBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 24
+
+[node name="RotateLeftButton" parent="Controls/RotationMargin/VBoxContainer/ButtonsHBox/RotateLeftMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+icon = ExtResource("5_ju4ld")
+icon_alignment = 1
+
+[node name="RotateRightMargin" type="MarginContainer" parent="Controls/RotationMargin/VBoxContainer/ButtonsHBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+
+[node name="RotateRightButton" parent="Controls/RotationMargin/VBoxContainer/ButtonsHBox/RotateRightMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+icon = ExtResource("7_f87ls")
+
+[node name="ThrustToggleMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -90.667
+offset_right = 146.0
+grow_vertical = 0
+theme_override_constants/margin_left = 56
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 56
+theme_override_constants/margin_bottom = 48
+
+[node name="ThrustToggleButton" parent="Controls/ThrustToggleMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("7_f87ls")
+icon_alignment = 1
+
+[node name="ReadoutsMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="ReadoutsVBox" type="VBoxContainer" parent="Controls/ReadoutsMargin"]
+layout_mode = 2
+
+[node name="AltitudeLabel" type="Label" parent="Controls/ReadoutsMargin/ReadoutsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Altitude: 0m (Earth)"
+
+[node name="SpeedLabel" type="Label" parent="Controls/ReadoutsMargin/ReadoutsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Speed: 0m/s (Earth)"
+
+[node name="GoalMargin" type="MarginContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.5
+offset_right = 35.5
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 48
+
+[node name="GoalLabel" type="Label" parent="Controls/GoalMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Goal"
+
+[node name="Menus" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_pjw6r")
+
+[node name="PauseMenu" type="Control" parent="Menus"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_ordee")
+
+[node name="Blur" type="Panel" parent="Menus/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuCenter" type="CenterContainer" parent="Menus/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuVBox" type="VBoxContainer" parent="Menus/PauseMenu/MenuCenter"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="Menus/PauseMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="Menus/PauseMenu/MenuCenter/MenuVBox/LabelMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 200
+text = "Paused"
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="Menus/PauseMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RestartButton" parent="Menus/PauseMenu/MenuCenter/MenuVBox/ButtonsVBox" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+text = "Restart"
+icon = ExtResource("4_iglkd")
+
+[node name="ExitButtonMargin" type="MarginContainer" parent="Menus/PauseMenu/MenuCenter/MenuVBox/ButtonsVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="ExitButton" parent="Menus/PauseMenu/MenuCenter/MenuVBox/ButtonsVBox/ExitButtonMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+text = "Exit"
+icon = ExtResource("6_m22aq")
+
+[node name="UnpauseMargin" type="MarginContainer" parent="Menus/PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.052
+anchor_bottom = 0.089
+offset_right = 0.159996
+offset_bottom = -0.120003
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 32
+
+[node name="UnpauseButton" parent="Menus/PauseMenu/UnpauseMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+icon = ExtResource("7_f87ls")
+
+[node name="CompleteMenu" type="Control" parent="Menus"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_agkur")
+
+[node name="Blur" type="Panel" parent="Menus/CompleteMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuCenter" type="CenterContainer" parent="Menus/CompleteMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuVBox" type="VBoxContainer" parent="Menus/CompleteMenu/MenuCenter"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="Menus/CompleteMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="Menus/CompleteMenu/MenuCenter/MenuVBox/LabelMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 200
+text = "LevelComplete!"
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="Menus/CompleteMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NextLevelButton" parent="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+text = "Next Level"
+icon = ExtResource("7_f87ls")
+
+[node name="RestartButtonMargin" type="MarginContainer" parent="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 64
+
+[node name="RestartButton" parent="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox/RestartButtonMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+text = "Restart"
+icon = ExtResource("4_iglkd")
+
+[node name="ExitButtonMargin" type="MarginContainer" parent="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="ExitButton" parent="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox/ExitButtonMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+text = "Exit"
+icon = ExtResource("6_m22aq")
+
+[node name="FailMenu" type="Control" parent="Menus"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_yrji5")
+
+[node name="Blur" type="Panel" parent="Menus/FailMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuCenter" type="CenterContainer" parent="Menus/FailMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuVBox" type="VBoxContainer" parent="Menus/FailMenu/MenuCenter"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="Menus/FailMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="Menus/FailMenu/MenuCenter/MenuVBox/LabelMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.752941, 0.752941, 0.752941, 1)
+theme_override_font_sizes/font_size = 200
+text = "Level Failed!"
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="Menus/FailMenu/MenuCenter/MenuVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RestartButton" parent="Menus/FailMenu/MenuCenter/MenuVBox/ButtonsVBox" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+text = "Restart"
+icon = ExtResource("4_iglkd")
+
+[node name="ExitButtonMargin" type="MarginContainer" parent="Menus/FailMenu/MenuCenter/MenuVBox/ButtonsVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="ExitButton" parent="Menus/FailMenu/MenuCenter/MenuVBox/ButtonsVBox/ExitButtonMargin" instance=ExtResource("1_lq02l")]
+layout_mode = 2
+text = "Exit"
+icon = ExtResource("6_m22aq")
+
+[node name="NullMenu" type="Control" parent="Menus"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("12_q7hx7")
+
+[connection signal="pressed" from="Controls/PauseMargin/PauseButton" to="." method="OnPauseButtonPressed"]
+[connection signal="pressed" from="Controls/RestartMargin/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="value_changed" from="Controls/ThrustMargin/Thrust/ThrustScrollBar" to="Controls" method="OnThrottleScrollBarValueChanged"]
+[connection signal="pressed" from="Controls/RotationMargin/VBoxContainer/ButtonsHBox/RotateLeftMargin/RotateLeftButton" to="Controls" method="OnRotateLeftButtonPressed"]
+[connection signal="pressed" from="Controls/RotationMargin/VBoxContainer/ButtonsHBox/RotateRightMargin/RotateRightButton" to="Controls" method="OnRotateRightButtonPressed"]
+[connection signal="pressed" from="Controls/ThrustToggleMargin/ThrustToggleButton" to="Controls" method="OnThrustToggleButtonPressed"]
+[connection signal="pressed" from="Menus/PauseMenu/MenuCenter/MenuVBox/ButtonsVBox/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="Menus/PauseMenu/MenuCenter/MenuVBox/ButtonsVBox/ExitButtonMargin/ExitButton" to="." method="OnExitButtonPressed"]
+[connection signal="pressed" from="Menus/PauseMenu/UnpauseMargin/UnpauseButton" to="." method="OnUnpauseButtonPressed"]
+[connection signal="pressed" from="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox/NextLevelButton" to="." method="OnNextLevelButtonPressed"]
+[connection signal="pressed" from="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox/RestartButtonMargin/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="Menus/CompleteMenu/MenuCenter/MenuVBox/ButtonsVBox/ExitButtonMargin/ExitButton" to="." method="OnExitButtonPressed"]
+[connection signal="pressed" from="Menus/FailMenu/MenuCenter/MenuVBox/ButtonsVBox/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="Menus/FailMenu/MenuCenter/MenuVBox/ButtonsVBox/ExitButtonMargin/ExitButton" to="." method="OnExitButtonPressed"]
